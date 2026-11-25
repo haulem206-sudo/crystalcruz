@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Fork — Swahili Cuisine, Mikocheni · Dar es Salaam</title>
+<meta name="description" content="Golden Fork, Mikocheni — Swahili seafood and charcoal-grilled fish in Dar es Salaam. 4 Kitambaa Street. Dine-in, takeout, delivery. +255 655 588 111.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230C1311'/%3E%3Cpath d='M22 14v14a4 4 0 0 0 4 4v18M22 14h0M28 14v18M28 50h0' stroke='%23C9A35C' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="preconnect" href="https://sf3-scmcdn-cn.feishucdn.com" crossorigin>
+<link rel="preload" href="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/lark-miaoda-fonts/fonts/marcellus/396e4dd603b1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/lark-miaoda-fonts/fonts/karla/272db45cd18d.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Marcellus&family=Karla:wght@400;500;700&display=swap">
+<style>
+/* ============ tokens ============ */
+:root{
+  --ink:#0C1311;
+  --ink-2:#121C19;
+  --wood:#1C1410;
+  --sea:#0F3029;
+  --brass:#C9A35C;
+  --brass-dim:#8C6F3C;
+  --bone:#EDE5D3;
+  --bone-dim:#AEB3AA;
+  --ember:#A5472C;
+  --line:rgba(201,163,92,.28);
+  --display:"Marcellus",Georgia,"Times New Roman",serif;
+  --text:"Karla",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font-family:var(--text);font-size:16px;line-height:1.65;
+  letter-spacing:.005em;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;margin:0;line-height:1.05}
+p{margin:0}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* carved-door motif: a hairline geometric tile, reused as texture */
+.carve{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23C9A35C' stroke-width='1'%3E%3Cpath d='M0 36h72M36 0v72'/%3E%3Cpath d='M36 18l18 18-18 18-18-18z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:72px 72px;
+}
+
+/* ============ header ============ */
+.top{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 18px;
+  background:rgba(12,19,17,.92);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand-name{font-family:var(--display);font-size:19px;letter-spacing:.14em;color:var(--bone);white-space:nowrap}
+.brand-sub{display:none}
+.nav{display:flex;gap:18px;font-size:14px;color:var(--bone-dim);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav a[aria-current="page"]{color:var(--bone);border-bottom-color:var(--brass)}
+.nav a:hover{color:var(--brass)}
+
+/* ============ views ============ */
+.view{display:none}
+.view.is-active{display:block}
+.shell{max-width:1240px;margin:0 auto;padding:0 18px}
+
+/* ============ hero ============ */
+.hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.hero-veil{position:absolute;inset:0;background:
+  linear-gradient(to top,rgba(9,15,13,.94) 0%,rgba(9,15,13,.55) 42%,rgba(9,15,13,.12) 78%,rgba(9,15,13,.35) 100%)}
+.hero-copy{position:relative;z-index:2;width:100%;padding:0 18px 46px;max-width:1240px;margin:0 auto}
+.hero-kicker{font-size:13px;letter-spacing:.18em;color:var(--brass);margin-bottom:16px}
+.hero-title{font-size:clamp(2.6rem,11vw,6.2rem);color:#F5EEE0;max-width:15ch}
+.hero-lede{max-width:42ch;margin-top:22px;font-size:17px;color:#D9D3C5;line-height:1.6}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-size:14px;color:var(--bone-dim)}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta b{font-family:var(--display);font-weight:400;font-size:17px;color:var(--bone)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 22px;
+  font-size:14px;letter-spacing:.06em;border:1px solid var(--line);
+  transition:background .2s,color .2s,border-color .2s;
+}
+.btn-solid{background:var(--brass);color:#12100B;border-color:var(--brass);font-weight:700}
+.btn-solid:hover{background:#DBB673;border-color:#DBB673}
+.btn-ghost:hover{background:rgba(201,163,92,.12);border-color:var(--brass)}
+
+/* ============ stat rail ============ */
+.rail{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rail-cell{padding:22px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rail-cell:last-child{border-bottom:0}
+.rail-cell:last-child,.rail-cell:nth-child(even){border-right:0}
+.rail-num{font-family:var(--display);font-size:30px;color:var(--bone);display:block;line-height:1.1}
+.rail-label{font-size:13px;color:var(--bone-dim);margin-top:6px;display:block}
+
+/* ============ section ============ */
+.sect{padding:64px 0}
+.sect-head{max-width:30ch}
+.eyebrow{display:none}
+.sect-title{font-size:clamp(1.65rem,5vw,2.6rem);color:var(--bone)}
+.sect-note{margin-top:14px;color:var(--bone-dim);max-width:56ch;font-size:15px}
+
+/* three plates: asymmetric editorial grid */
+.plates{display:grid;gap:14px;margin-top:34px}
+.plate{position:relative;overflow:hidden;background:var(--wood)}
+.plate img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.plate:hover img{transform:scale(1.03)}
+.plate figcaption{
+  position:absolute;inset:auto 0 0 0;padding:14px 16px 15px;
+  background:linear-gradient(to top,rgba(9,14,12,.92),rgba(9,14,12,0));
+  font-size:13px;color:#EBE4D6;
+}
+.plate figcaption b{display:block;font-family:var(--display);font-size:18px;font-weight:400;margin-bottom:3px}
+.plate:nth-child(1){aspect-ratio:4/3}
+.plate:nth-child(2),.plate:nth-child(3){aspect-ratio:3/4}
+
+/* ============ voices ============ */
+.voices{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.voice-grid{display:grid;gap:12px;margin-top:32px}
+.voice{border-left:2px solid var(--brass-dim);padding:6px 0 6px 20px}
+.voice q{quotes:"“" "”";font-size:17px;line-height:1.6;color:#DED7C8;display:block}
+.voice-meta{margin-top:12px;font-size:13px;color:var(--bone-dim)}
+.voice-meta span{color:var(--brass)}
+.fine{font-size:12.5px;color:#858D85;max-width:62ch;margin-top:26px;line-height:1.6}
+
+/* ============ menu ============ */
+.menu-intro{padding:104px 0 0}
+.menu-lede{font-size:clamp(2rem,7vw,3.4rem);max-width:20ch;color:var(--bone);margin-top:16px}
+.menu-price{
+  display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;padding:18px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px;color:var(--bone-dim)
+}
+.menu-price b{font-family:var(--display);font-weight:400;color:var(--bone);font-size:18px}
+
+.dish{display:grid;gap:18px;padding:38px 0;border-bottom:1px solid var(--line);align-items:center}
+.dish-img{width:100%;aspect-ratio:3/2;overflow:hidden;background:var(--wood)}
+.dish-img img{width:100%;height:100%;object-fit:cover}
+.dish-body{max-width:52ch}
+.dish-cat{font-size:12.5px;letter-spacing:.14em;color:var(--brass-dim);margin-bottom:10px}
+.dish-name{font-size:clamp(1.4rem,4.4vw,2rem);color:var(--bone)}
+.dish-desc{margin-top:12px;color:#CBC6B8;font-size:15.5px}
+.dish-tag{margin-top:14px;font-size:12.5px;color:var(--bone-dim);display:inline-block;border:1px solid var(--line);padding:4px 10px}
+
+/* ============ room ============ */
+.room-hero{position:relative;height:62svh;overflow:hidden;margin-top:64px}
+.room-hero img{width:100%;height:100%;object-fit:cover}
+.room-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,13,.8),rgba(9,15,13,.1))}
+.room-body{display:grid;gap:24px;padding:52px 0}
+.room-copy{max-width:58ch}
+.room-copy p+p{margin-top:16px}
+.room-copy p{color:#D2CCBD}
+.room-facts{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.room-fact{background:var(--ink-2);padding:18px 18px}
+.room-fact dt{font-size:12.5px;color:var(--brass-dim);letter-spacing:.1em;margin-bottom:6px}
+.room-fact dd{margin:0;font-family:var(--display);font-size:17px;color:var(--bone)}
+
+/* ============ visit ============ */
+.visit{padding:104px 0 0}
+.visit-grid{display:grid;gap:26px;margin-top:34px}
+.visit-card{border:1px solid var(--line);padding:24px 22px;background:var(--ink-2)}
+.visit-card h3{font-size:20px;color:var(--bone);margin-bottom:12px}
+.visit-card p{color:#CBC6B8;font-size:15px}
+.visit-card .big-link{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;min-height:44px;
+  font-family:var(--display);font-size:19px;color:var(--brass);border-bottom:1px solid var(--brass-dim);padding-bottom:2px
+}
+.visit-card .big-link:hover{color:#E4C183;border-color:#E4C183}
+.svc{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.svc span{font-size:13px;padding:7px 13px;border:1px solid var(--line);color:var(--bone-dim)}
+.map-link{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:26px;
+  padding:20px 22px;background:var(--sea);border:1px solid var(--line);min-height:60px
+}
+.map-link span{font-family:var(--display);font-size:18px}
+.map-link svg{width:18px;height:18px;stroke:var(--brass);flex:0 0 auto}
+.map-link:hover{background:#123A32}
+
+/* ============ guests ============ */
+.guests{padding:104px 0 0}
+.rating-band{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.rating-cell{background:var(--ink-2);padding:22px 20px}
+.rating-cell .n{font-family:var(--display);font-size:34px;line-height:1.1;color:var(--bone);display:block}
+.rating-cell .l{font-size:13px;color:var(--bone-dim);margin-top:8px;display:block;max-width:22ch}
+.rating-note{margin-top:20px;font-size:14.5px;color:var(--bone-dim);max-width:60ch}
+.guest-list{margin-top:18px}
+.guest{border-top:1px solid var(--line);padding:30px 0;display:grid;gap:12px}
+.guest q{quotes:"“" "”";font-family:var(--display);font-size:clamp(1.15rem,3.4vw,1.55rem);line-height:1.45;color:#E6DFD0}
+.guest-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--bone-dim)}
+.guest-meta .who{color:var(--brass)}
+.guest-meta .tag{border:1px solid var(--line);padding:3px 9px;color:#9FA69E}
+.tip-grid{display:grid;gap:14px;margin-top:26px}
+.tip{border-left:2px solid var(--brass-dim);padding-left:18px}
+.tip h4{font-family:var(--display);font-weight:400;font-size:17px;margin:0 0 6px;color:var(--bone)}
+.tip p{font-size:14.5px;color:#B9B4A7}
+
+/* ============ footer ============ */
+.foot{border-top:1px solid var(--line);padding:38px 0 46px;margin-top:64px}
+.foot-top{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:baseline}
+.foot-name{font-family:var(--display);font-size:18px;letter-spacing:.12em}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--bone-dim)}
+.foot-links a:hover{color:var(--brass)}
+.foot-fine{margin-top:22px;font-size:12px;line-height:1.7;color:#787F78;max-width:74ch}
+
+/* ============ reveal ============ */
+@media (prefers-reduced-motion:no-preference){
+  .din{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .din.in{opacity:1;transform:none}
+}
+body.menu-open{overflow:hidden}
+
+/* ============ ≥768px ============ */
+@media (min-width:768px){
+  .top{padding:16px 34px}
+  .brand-sub{display:block;font-size:12.5px;color:var(--bone-dim);letter-spacing:.08em}
+  .shell{padding:0 34px}
+  .hero-copy{padding:0 34px 64px}
+  .hero-lede{font-size:18px}
+  .rail{grid-template-columns:repeat(4,1fr)}
+  .rail-cell{border-bottom:0}
+  .rail-cell:last-child{border-right:1px solid var(--line)}
+  .sect{padding:84px 0}
+  .plates{grid-template-columns:1.15fr .8fr .8fr;gap:16px;align-items:stretch}
+  .plate:nth-child(1){aspect-ratio:auto;grid-row:span 1}
+  .plate:nth-child(2),.plate:nth-child(3){aspect-ratio:4/5}
+  .voice-grid{grid-template-columns:repeat(3,1fr);gap:22px}
+  .dish{grid-template-columns:1fr 1.05fr;gap:40px;padding:52px 0}
+  .dish:nth-child(even) .dish-img{order:2}
+  .room-body{grid-template-columns:1.4fr 1fr;gap:44px;align-items:start;padding:64px 0}
+  .visit-grid{grid-template-columns:1fr 1fr}
+  .rating-band{grid-template-columns:repeat(3,1fr)}
+  .tip-grid{grid-template-columns:repeat(3,1fr);gap:28px}
+  .menu-lede{font-size:clamp(2.6rem,4.6vw,3.8rem)}
+  .foot-top{align-items:flex-start}
+}
+@media (min-width:1100px){
+  .hero-title{font-size:clamp(4rem,6.6vw,6.4rem)}
+  .dish{grid-template-columns:1.1fr 1fr;gap:64px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="brand-name">GOLDEN FORK</span>
+    <span class="brand-sub">Swahili cuisine · Mikocheni</span>
+  </div>
+  <nav class="nav" aria-label="Sections">
+    <a href="#home" data-route="home">Home</a>
+    <a href="#kitchen" data-route="kitchen">The kitchen</a>
+    <a href="#room" data-route="room">The room</a>
+    <a href="#guests" data-route="guests">Guests</a>
+    <a href="#visit" data-route="visit">Visit</a>
+  </nav>
+</header>
+
+<main>
+<!-- ===================== VIEW · HOME ===================== -->
+<section class="view" id="home">
+  <div class="hero">
+    <img class="hero-img" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OF0jbycWlo7oIDxKcsjcsmY5nFc" alt="Charcoal-grilled whole fish with lime and onion on a carved wooden board" fetchpriority="high">
+    <div class="hero-veil"></div>
+    <div class="hero-copy">
+      <p class="hero-kicker">4 Kitambaa Street, Mikocheni · Dar es Salaam</p>
+      <h1 class="hero-title">Charcoal, lime, and the Indian Ocean.</h1>
+      <p class="hero-lede">The fish goes over the coals whole and comes back split, blistered and dripping. Nothing here is quiet — the juice press runs all evening, the chai pot never comes off the stove.</p>
+      <div class="hero-meta">
+        <span><b>4.4</b> Google, 922 reviews</span>
+        <span><b>TZS 20,000–30,000</b> per person</span>
+        <span>Dine-in · Takeaway · Delivery</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#kitchen" data-route="kitchen">What people order</a>
+        <a class="btn btn-ghost" href="tel:+255655588111">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3h3l2 5-2.5 1.5a13 13 0 0 0 5 5L16 12l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 5 5.2 2 2 0 0 1 7 3z"/></svg>
+          +255 655 588 111
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="rail din">
+      <div class="rail-cell"><span class="rail-num">4.4</span><span class="rail-label">average of 922 Google reviews</span></div>
+      <div class="rail-cell"><span class="rail-num">TZS 20–30K</span><span class="rail-label">per person, reported by 29 visitors</span></div>
+      <div class="rail-cell"><span class="rail-num">Mikocheni</span><span class="rail-label">4 Kitambaa St, off the main road</span></div>
+      <div class="rail-cell"><span class="rail-num">3 ways</span><span class="rail-label">eat in, take away, or have it delivered</span></div>
+    </div>
+  </div>
+
+  <div class="shell sect">
+    <div class="sect-head din">
+      <h2 class="sect-title">Three things people come back for</h2>
+      <p class="sect-note">Not the whole board — just what guests keep writing about in their reviews. The menu runs longer than this.</p>
+    </div>
+    <div class="plates din">
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/BVB2bGL3OosAVlx59DacYAJGnye" alt="Grilled prawns, calamari and fish on a brass platter with tomato salad" loading="lazy">
+        <figcaption><b>Grilled fish &amp; sea food</b>Over charcoal, served with lime and a tomato-onion salad.</figcaption>
+      </figure>
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Hg9VbUue7oKqPRx6E8FcaoMknBf" alt="Three glasses of fresh tropical juice on a wooden counter" loading="lazy">
+        <figcaption><b>The juice press</b>Passion, mango, avocado — pressed to order.</figcaption>
+      </figure>
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JUBgbeeFco2Ynox8UJmczt0Nndh" alt="Masala chai poured into a glass beside whole spices" loading="lazy">
+        <figcaption><b>Masala chai</b>Ginger, cardamom, cinnamon. Served hot, all day.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="voices">
+    <div class="shell" style="padding-top:56px;padding-bottom:56px">
+      <div class="sect-head din">
+        <h2 class="sect-title">Nothing here is unanimous</h2>
+        <p class="sect-note">4.4 from 922 reviews, and the split is honest: people love the chai and the juice, and some say the grill has slipped. Read the whole guest book before you book a table.</p>
+      </div>
+      <div class="voice-grid din">
+        <div class="voice">
+          <q>Good food, plenty of options. I like their masala chai and chicken kidneys, beef livers, and their juice is so good.</q>
+          <p class="voice-meta">Momo · <span>Google review, 5 months ago</span></p>
+        </div>
+      </div>
+      <div class="hero-actions" style="margin-top:26px">
+        <a class="btn btn-ghost" href="#guests" data-route="guests">Read the guest book</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell sect">
+    <div class="sect-head din">
+      <h2 class="sect-title">Find the fork</h2>
+      <p class="sect-note">A short turn off Kitambaa Street in Mikocheni, a few minutes from the Bagamoyo Road junction. Parking on the street; the door is on the left as you come in.</p>
+    </div>
+    <a class="map-link din" href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Fork+Swahili+Cuisine+Mikocheni+Dar+es+Salaam" target="_blank" rel="noopener">
+      <span>Open in Google Maps — 67P3+QV Dar es Salaam</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== VIEW · KITCHEN ===================== -->
+<section class="view" id="kitchen">
+  <div class="shell menu-intro">
+    <h2 class="menu-lede">The board, as guests describe it.</h2>
+    <div class="menu-price">
+      <span><b>TZS 20,000–30,000</b> &nbsp;typical spend per person</span>
+      <span>Prices set at the counter, they move with the day's catch</span>
+      <span>Call <b style="font-size:15px">+255 655 588 111</b> for today's price</span>
+    </div>
+    <p class="sect-note" style="margin-top:22px">This is not the full menu — it is the short list of dishes reviewers name again and again, plus what the kitchen is known for on Google. The rest changes with what came in that morning.</p>
+  </div>
+
+  <div class="shell">
+    <article class="dish din">
+      <div class="dish-img"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/BVB2bGL3OosAVlx59DacYAJGnye" alt="Seafood platter of prawns, calamari and grilled fish" loading="lazy"></div>
+      <div class="dish-body">
+        <p class="dish-cat">From the charcoal</p>
+        <h3 class="dish-name">Sea food &amp; grilled fish</h3>
+        <p class="dish-desc">The reason most people come. Whole fish over coals until the skin blisters and lifts, prawns and calamari alongside, lime and a sharp tomato-onion salad to cut the smoke.</p>
+        <span class="dish-tag">Listed on Google as the house highlight</span>
+      </div>
+    </article>
+
+    <article class="dish din">
+      <div class="dish-img"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JzZYbzDItoyXRIxbPLfc2D4Bn4e" alt="Beef liver and chicken kidney stew with rice and chapati" loading="lazy"></div>
+      <div class="dish-body">
+        <p class="dish-cat">From the pot</p>
+        <h3 class="dish-name">Beef liver &amp; chicken kidneys</h3>
+        <p class="dish-desc">Slow-stewed in a spiced gravy until the onion collapses into it. The kind of plate regulars order without reading the menu, eaten with rice or torn chapati.</p>
+        <span class="dish-tag">Named in guest reviews</span>
+      </div>
+    </article>
+
+    <article class="dish din">
+      <div class="dish-img"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Hg9VbUue7oKqPRx6E8FcaoMknBf" alt="Fresh tropical juices: passion fruit, mango and avocado" loading="lazy"></div>
+      <div class="dish-body">
+        <p class="dish-cat">From the press</p>
+        <h3 class="dish-name">Fresh juice</h3>
+        <p class="dish-desc">Passion fruit, mango, avocado, and whatever the market had that week. Thick, unsweetened unless you ask, and pressed when you order. Regulars warn the flavour shifts from visit to visit — that is fruit, not syrup.</p>
+        <span class="dish-tag">Reviews mention it 22 times</span>
+      </div>
+    </article>
+
+    <article class="dish din">
+      <div class="dish-img"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JUBgbeeFco2Ynox8UJmczt0Nndh" alt="Masala chai poured into a glass with cardamom, cinnamon and ginger" loading="lazy"></div>
+      <div class="dish-body">
+        <p class="dish-cat">From the kettle</p>
+        <h3 class="dish-name">Masala chai</h3>
+        <p class="dish-desc">Boiled with ginger, cardamom and cinnamon until it darkens and thickens. Small glass, very hot, strong enough to stand up to the smoke from the grill.</p>
+        <span class="dish-tag">The one thing reviewers agree on</span>
+      </div>
+    </article>
+  </div>
+
+  <div class="shell sect" style="padding-top:12px">
+    <p class="fine">Menu descriptions are written from the restaurant's Google listing and public reviews, not from a printed menu. Photography on this site is illustrative. Prices and availability change daily — confirm by phone before you travel.</p>
+  </div>
+</section>
+
+<!-- ===================== VIEW · ROOM ===================== -->
+<section class="view" id="room">
+  <div class="shell" style="padding-top:104px">
+    <div class="sect-head din">
+      <h2 class="sect-title">A room built for long dinners</h2>
+      <p class="sect-note">Dark wood, brass light, carved panels on the wall. It is a working neighbourhood restaurant, not a staged one — tables turn slowly and nobody rushes you out.</p>
+    </div>
+  </div>
+
+  <div class="room-hero din">
+    <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/D5yEb2o7soAiRWxX5ZAckUiCnue" alt="Warm-lit restaurant interior with carved wooden door panel and brass pendants" loading="lazy">
+  </div>
+
+  <div class="shell room-body">
+    <div class="room-copy din">
+      <p>Swahili coast cooking is what happens when the ocean, the spice trade and the coconut palm all end up in the same pot. Fish straight off the boats, sour lime instead of vinegar, coconut milk where a European kitchen would use cream, and chilli that arrives late rather than early.</p>
+      <p>At Golden Fork that logic stays on the grill. Nothing is plated to be photographed; it is plated to be eaten with your hands and a piece of chapati. The room does the rest — lamps low, wood dark, the juice press audible over the conversation.</p>
+      <p>It sits in Mikocheni, a neighbourhood of offices, embassies and apartment blocks, which is why the crowd runs from lunching colleagues to families on a Sunday to drivers picking up takeaway at nine at night.</p>
+    </div>
+    <dl class="room-facts din">
+      <div class="room-fact"><dt>Address</dt><dd>4 Kitambaa St, Mikocheni, Dar es Salaam</dd></div>
+      <div class="room-fact"><dt>Plus code</dt><dd>67P3+QV Dar es Salaam</dd></div>
+      <div class="room-fact"><dt>Telephone</dt><dd>+255 655 588 111</dd></div>
+      <div class="room-fact"><dt>Service</dt><dd>Dine-in · Takeaway · Delivery</dd></div>
+      <div class="room-fact"><dt>Typical spend</dt><dd>TZS 20,000–30,000 per person</dd></div>
+    </dl>
+  </div>
+
+  <div class="shell sect" style="padding-top:0">
+    <div class="sect-head din">
+      <h2 class="sect-title">What the plates look like</h2>
+      <p class="sect-note">Illustrative photography, styled to the kitchen's cooking. Ask for the fish when you arrive — it is the plate worth ordering.</p>
+    </div>
+    <div class="plates din">
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OF0jbycWlo7oIDxKcsjcsmY5nFc" alt="Whole grilled fish with lime and red onion" loading="lazy">
+        <figcaption><b>Whole grilled fish</b>The house plate: charred, split, lime on top.</figcaption>
+      </figure>
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JzZYbzDItoyXRIxbPLfc2D4Bn4e" alt="Liver and kidney stew with rice and chapati" loading="lazy">
+        <figcaption><b>From the pot</b>Liver and kidneys in spiced gravy.</figcaption>
+      </figure>
+      <figure class="plate">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/JUBgbeeFco2Ynox8UJmczt0Nndh" alt="Masala chai in a glass" loading="lazy">
+        <figcaption><b>Chai, last</b>Ginger-forward, served in a small glass.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIEW · GUESTS ===================== -->
+<section class="view" id="guests">
+  <div class="shell guests">
+    <div class="sect-head din">
+      <h2 class="sect-title">The guest book</h2>
+      <p class="sect-note">922 people have left a mark on this listing. Here is the pattern inside them: what gets praised, what gets criticised, and how to time your visit so neither catches you out.</p>
+    </div>
+
+    <div class="rating-band din">
+      <div class="rating-cell"><span class="n">4.4</span><span class="l">average rating on Google</span></div>
+      <div class="rating-cell"><span class="n">922</span><span class="l">reviews behind that average</span></div>
+      <div class="rating-cell"><span class="n">29</span><span class="l">visitors reported the TZS 20,000–30,000 spend</span></div>
+    </div>
+
+    <div class="guest-list din">
+      <article class="guest">
+        <q>The staff were friendly and attentive, and the food was decent.</q>
+        <div class="guest-meta">
+          <span class="who">Arend van Holland</span>
+          <span>Local Guide · 8 reviews</span>
+          <span class="tag">dinner</span>
+          <span class="tag">1 month ago</span>
+        </div>
+      </article>
+
+      <article class="guest">
+        <q>Good food, plenty of options. I like their masala chai and chicken kidneys, beef livers, and their juice is so good, but it tastes different sometimes.</q>
+        <div class="guest-meta">
+          <span class="who">Momo</span>
+          <span>Local Guide · 95 reviews</span>
+          <span class="tag">masala chai</span>
+          <span class="tag">chicken kidneys</span>
+          <span class="tag">juice</span>
+        </div>
+      </article>
+
+      <article class="guest">
+        <q>The quality of this restaurant has unfortunately declined, or perhaps they are focusing all their energy on their Sinza branch. I highly recommend visiting the Sinza location instead, as the Mikocheni branch is no longer worth it.</q>
+        <div class="guest-meta">
+          <span class="who">David Tanzania</span>
+          <span>Local Guide · 27 reviews</span>
+          <span class="tag">consistency</span>
+          <span class="tag">4 months ago</span>
+        </div>
+      </article>
+    </div>
+
+    <p class="fine">Quotes are trimmed from public Google reviews; wording and opinions belong to the reviewers, not to this site. Google's own topic tags behind the rating lean on local food, juice, fresh juices and Tanzanian food.</p>
+
+    <div class="sect-head din" style="margin-top:64px">
+      <h2 class="sect-title">How to get the best out of it</h2>
+      <p class="sect-note">Three things the reviews agree on, whichever way the argument goes.</p>
+    </div>
+    <div class="tip-grid din">
+      <div class="tip">
+        <h4>Order the fish first</h4>
+        <p>Sea food and grilled fish are what the listing is known for. Ask what came in that morning before you decide — the plate follows the catch, not the menu.</p>
+      </div>
+      <div class="tip">
+        <h4>Drink what they press</h4>
+        <p>Fresh juice comes up more often than any single dish. It is pressed per order, so the flavour moves with the fruit — regulars treat that as the point, not a flaw.</p>
+      </div>
+      <div class="tip">
+        <h4>Ring before a special occasion</h4>
+        <p>Complaints cluster around consistency rather than price or service. For a birthday or a large group, call the counter and confirm what is available that day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIEW · VISIT ===================== -->
+<section class="view" id="visit">
+  <div class="shell visit">
+    <div class="sect-head din">
+      <h2 class="sect-title">Come in, or call it through</h2>
+      <p class="sect-note">Mikocheni, off Kitambaa Street. Best to ring before a big group or a late order — the grill runs on what came in that morning.</p>
+    </div>
+
+    <div class="visit-grid">
+      <div class="visit-card din">
+        <h3>Call the counter</h3>
+        <p>The number reaches the restaurant directly. Ask what the catch is before you commit to a table.</p>
+        <a class="big-link" href="tel:+255655588111">+255 655 588 111</a>
+      </div>
+
+      <div class="visit-card din">
+        <h3>Directions</h3>
+        <p>4 Kitambaa St, Mikocheni, Dar es Salaam. Plus code 67P3+QV. A short turn off the main Mikocheni road; street parking outside.</p>
+        <a class="big-link" href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Fork+Swahili+Cuisine+Mikocheni+Dar+es+Salaam" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+
+      <div class="visit-card din">
+        <h3>How you can eat</h3>
+        <p>All three options are offered, and takeaway is the busiest of them after eight in the evening.</p>
+        <div class="svc"><span>Dine-in</span><span>Takeaway</span><span>Delivery</span></div>
+      </div>
+
+      <div class="visit-card din">
+        <h3>Before you go</h3>
+        <p>Opening hours are not published on Google — call to confirm. Budget TZS 20,000–30,000 per person. Reviews are mixed on consistency between visits, and the Sinza branch is a separate operation.</p>
+      </div>
+    </div>
+
+    <div class="shell" style="padding:0">
+      <a class="map-link din" href="https://www.google.com/maps/search/?api=1&amp;query=67P3%2BQV+Dar+es+Salaam" target="_blank" rel="noopener">
+        <span>67P3+QV Dar es Salaam — open the pin</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-top">
+      <span class="foot-name">GOLDEN FORK</span>
+      <div class="foot-links">
+        <a href="tel:+255655588111">+255 655 588 111</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Fork+Swahili+Cuisine+Mikocheni+Dar+es+Salaam" target="_blank" rel="noopener">Maps</a>
+        <a href="#kitchen" data-route="kitchen">The kitchen</a>
+        <a href="#visit" data-route="visit">Visit</a>
+      </div>
+    </div>
+    <p class="foot-fine">Details on this site come from the restaurant's public Google listing: 4 Kitambaa St, Mikocheni, Dar es Salaam; +255 655 588 111; TZS 20,000–30,000 per person; 4.4 from 922 reviews; dine-in, takeaway and delivery. Review quotes are trimmed from public Google reviews and remain the reviewers' opinions. Food and interior photographs are illustrative renderings, not photographs of the restaurant. Hours and prices are not published — confirm by phone. This page is an independently prepared presentation and is not an official Golden Fork website.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var routes = ['home','kitchen','room','guests','visit'];
+  var views = {};
+  routes.forEach(function(r){ views[r] = document.getElementById(r); });
+
+  function show(route){
+    if(routes.indexOf(route) === -1) route = 'home';
+    routes.forEach(function(r){
+      views[r].classList.toggle('is-active', r === route);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.nav [data-route]'), function(a){
+      if(a.getAttribute('data-route') === route){ a.setAttribute('aria-current','page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+    window.scrollTo(0,0);
+    reveal();
+  }
+
+  function routeFromHash(){ return (location.hash || '#home').replace('#','') || 'home'; }
+
+  window.addEventListener('hashchange', function(){ show(routeFromHash()); });
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-route]');
+    if(!a) return;
+    var r = a.getAttribute('data-route');
+    if(location.hash === '#' + r){ e.preventDefault(); show(r); }
+  });
+
+  var items = document.querySelectorAll('.din');
+  var io = null;
+  if('IntersectionObserver' in window){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.12});
+  }
+  function reveal(){
+    Array.prototype.forEach.call(items, function(el){
+      if(!io){ el.classList.add('in'); return; }
+      if(el.closest('.view').classList.contains('is-active') || el.closest('.view').id === 'home'){
+        io.observe(el);
+      }
+    });
+  }
+
+  show(routeFromHash());
+  window.addEventListener('load', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.view:not(.is-active) .din'), function(el){ el.classList.add('in'); });
+  });
+})();
+</script>
+</body>
+</html>
